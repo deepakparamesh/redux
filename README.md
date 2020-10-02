@@ -1,2 +1,7 @@
 # redux
-A repo for writing different styles of redux repositories
+A repo for showing different styles of redux
+
+## Branch Names
+
+### Redux in Plain JS
+
