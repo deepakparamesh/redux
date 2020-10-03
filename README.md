@@ -14,3 +14,8 @@ Steps to Create redux
 
 
 
+Branch 04-designin-store
+
+Combining Reducers
+Normalization 
+Memoization
