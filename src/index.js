@@ -1,23 +1,33 @@
 import configureStore from './store/configureStore';
-import * as actions from './store/bugs';
+import { bugAdded, bugRemoved, bugResolved, bugAssignedToUser, getUnresolvedBugs, getBugsByUser } from './store/bugs';
 import * as projectActions from './store/projects';
+import { userAdded } from './store/users';
 
 const store = configureStore();
 
 const unsubscribe = store.subscribe(() => {
-    console.log("Store Changed!", store.getState());
+    console.log("Store Changed!");
 });
+ 
+store.dispatch(userAdded({ name: "User 1" }));
+store.dispatch(userAdded({ name: "User 2" }));
 
 store.dispatch(projectActions.projectAdded({name: "Project 1"}));
 
-store.dispatch(actions.bugAdded({description: "Bug1"}));
-store.dispatch(actions.bugAdded({description: "Bug2"}));
-store.dispatch(actions.bugAdded({description: "Bug3"}));
+store.dispatch(bugAdded({description: "Bug1"}));
+store.dispatch(bugAdded({description: "Bug2"}));
+store.dispatch(bugAdded({description: "Bug3"}));
 
 // unsubscribe();
 
-store.dispatch(actions.bugResolved({id: 1}))
+store.dispatch(bugAssignedToUser({ bugId: 1, userId: 1}));
 
-store.dispatch(actions.bugRemoved({id: 2}));
+store.dispatch(bugResolved({id: 2}))
+store.dispatch(bugRemoved({id: 1}));
+
+
+const unresolvedBugs = getUnresolvedBugs(store.getState());
+
+const bugByUser = getBugsByUser(1)(store.getState());
 
 console.log(store.getState());
