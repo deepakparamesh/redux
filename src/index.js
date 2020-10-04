@@ -31,3 +31,15 @@ const unresolvedBugs = getUnresolvedBugs(store.getState());
 const bugByUser = getBugsByUser(1)(store.getState());
 
 console.log(store.getState());
+
+// store.dispatch((dispatch, getState) => {
+//     // call an api
+//     // when the promise is resolved
+//     store.dispatch({ type: 'bugsReceived', bugs: [1,2,3]})
+//     // if the promise is rejected
+// });
+
+store.dispatch({
+    type: "error",
+    payload: { message: "An Error Occured" }
+})
